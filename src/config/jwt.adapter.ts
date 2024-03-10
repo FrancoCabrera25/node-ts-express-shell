@@ -12,5 +12,7 @@ export class JwtAdapter {
         });
     }
 
-    static validateToken = (token: string) => {};
+    static validateToken = (token: string) => {
+        
+    };
 }
