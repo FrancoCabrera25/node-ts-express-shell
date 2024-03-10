@@ -21,9 +21,13 @@ export class AuthServices {
             await user.save();
             const { password, ...userRest } = UserEntity.fromObject(user);
 
+            const token = this.getToken({ id: userRest.id, email: userRest.email });
+            if (!token) {
+                throw CustomError.internalServer('Error while creating JWT');
+            }
             return {
                 user: userRest,
-                token: 'ABC',
+                token,
             };
         } catch (error) {
             throw CustomError.internalServer(`${error}`);
