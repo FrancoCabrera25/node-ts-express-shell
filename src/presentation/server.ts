@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import path from 'path';
+import { generateRandomRecords } from '../script-tp/export-excel';
 
 interface Options {
   port: number;
@@ -47,6 +48,7 @@ export class Server {
 
     this.serverListener = this.app.listen(this.port, () => {
       console.log(`Server running on port ${ this.port }`);
+      //generateRandomRecords(150000);
     });
 
   }

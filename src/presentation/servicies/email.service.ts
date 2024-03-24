@@ -21,7 +21,7 @@ export class EmailService {
     this.transporter = nodemailer.createTransport({
         service: mailerService,
         auth: {
-            user: mailerService,
+            user: mailerEmail,
             pass: senderEmailPassword,
         }
     })
@@ -42,10 +42,11 @@ export class EmailService {
         attachments: attachements,
       });
 
-      // console.log( sentInformation );
+       console.log('sentInformation', sentInformation );
 
       return true;
     } catch ( error ) {
+      console.log('error', error);
       return false;
     }
 

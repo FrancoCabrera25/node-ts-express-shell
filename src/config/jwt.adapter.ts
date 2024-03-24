@@ -12,7 +12,13 @@ export class JwtAdapter {
         });
     }
 
-    static validateToken = (token: string) => {
-        
-    };
+    static validateToken<T>(token: string): Promise<T | null> {
+        return new Promise((resolve) => {
+            jwt.verify(token, envs.TOKENSECRET, (err, decoded) => {
+                if (err) resolve(null);
+
+                resolve(decoded as T);
+            });
+        });
+    }
 }
